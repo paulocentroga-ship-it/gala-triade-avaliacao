@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação Gala Tríade 2026 — Melhores do Ano</title>
+<style>
+  :root{--azul:#2F5496;--amarelo:#FFF2CC;--verde:#2E7D32;--cinza:#f4f5f7;--borda:#d8d8d8;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
+  body{background:var(--cinza);padding:14px;max-width:680px;margin:0 auto;}
+  .card{background:#fff;border-radius:12px;padding:18px 14px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:12px;}
+  h1{font-size:1.1rem;color:var(--azul);}
+  .sub{font-size:.8rem;color:#555;margin-top:4px;}
+  .bloco{border:1px solid var(--borda);border-radius:10px;margin-top:14px;overflow:hidden;}
+  .bloco-h{background:var(--azul);color:#fff;padding:8px 12px;font-size:.9rem;font-weight:bold;}
+  .bloco-h small{font-weight:normal;opacity:.85;}
+  .crit{padding:10px 12px;border-bottom:1px solid #eee;}
+  .crit:last-child{border-bottom:none;}
+  .nome{font-size:.85rem;font-weight:bold;}
+  .desc{font-size:.72rem;color:#666;margin:2px 0 6px;}
+  .notas{display:flex;gap:5px;}
+  .notas label{flex:1;cursor:pointer;}
+  .notas input{display:none;}
+  .notas span{display:block;text-align:center;padding:7px 0;border:1px solid #bbb;border-radius:7px;background:#fff;font-size:.85rem;}
+  .notas input:checked+span{background:var(--azul);color:#fff;border-color:var(--azul);}
+  .notas .na span{background:#eee;font-size:.7rem;}
+  .notas .na input:checked+span{background:#555;border-color:#555;}
+  label.lbl{display:block;font-size:.85rem;font-weight:bold;margin:14px 0 6px;}
+  input[type=text],textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem;background:var(--amarelo);}
+  textarea{resize:vertical;}
+  .obs{margin:8px 12px 12px;}
+  .obs label{font-size:.75rem;font-weight:bold;color:#444;}
+  .obs textarea{font-size:.85rem;}
+  button{width:100%;margin-top:16px;padding:14px;background:var(--azul);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:bold;cursor:pointer;}
+  button:disabled{background:#9bb0d4;}
+  .erro{color:#c00;font-size:.8rem;margin-top:10px;display:none;}
+  #ok{text-align:center;padding:24px 10px;display:none;}
+  #ok .tick{font-size:3rem;color:var(--verde);}
+  #ok h2{color:var(--verde);font-size:1.1rem;margin:8px 0;}
+  #ok p{font-size:.85rem;color:#555;}
+  footer{font-size:.7rem;color:#999;text-align:center;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="card" id="form-card">
+  <h1>Avaliação Gala Tríade 2026 — Melhores do Ano</h1>
+  <p class="sub">Tríade Espaço Terapêutico · Período 01/01/2026 a 30/11/2026 · resposta <b>anônima</b>.<br>
+  Notas de <b>1 a 5</b> (5 = Excelente) · use <b>N/A</b> se o critério não se aplicar à função avaliada.</p>
+
+  <form id="f" novalidate>
+    <label class="lbl">Terapeuta avaliado <span style="font-weight:normal;font-size:.75rem;color:#777;">(nome completo)</span>
+      <input type="text" id="avaliado" placeholder="Ex.: Roberta" autocomplete="off">
+    </label>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco A — Qualidade Técnica e Entrega <small>(peso 40%)</small></div>
+      <div class="crit"><div class="nome">A1. Rigor e Conformidade Técnica</div>
+        <div class="desc">Execução das rotinas com estrita observância aos protocolos técnicos, éticos e regulamentares da profissão.</div>
+        <div class="notas" data-c="a1"></div></div>
+      <div class="crit"><div class="nome">A2. Cumprimento de Prazos</div>
+        <div class="desc">Pontualidade na entrega de laudos, relatórios, evoluções em prontuário, planilhas e rotinas.</div>
+        <div class="notas" data-c="a2"></div></div>
+      <div class="crit"><div class="nome">A3. Consistência da Documentação</div>
+        <div class="desc">Clareza, legibilidade, integridade formal e precisão nos registros diários, sem omissões mandatórias.</div>
+        <div class="notas" data-c="a3"></div></div>
+      <div class="crit"><div class="nome">A4. Precisão e Acurácia Operacional</div>
+        <div class="desc">Baixo índice de refações ou erros em cadastros, agendamentos, manejos, condutas ou laudos.</div>
+        <div class="notas" data-c="a4"></div></div>
+      <div class="obs"><label>Observações e evidências do Bloco A <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsA" rows="2" placeholder="Fato concreto, métrica ou evidência que fundamente a pontuação..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco B — Colaboração e Interdisciplinaridade <small>(peso 30%)</small></div>
+      <div class="crit"><div class="nome">B1. Cooperação Multidisciplinar</div>
+        <div class="desc">Compartilhamento ativo de informações técnicas com as demais especialidades para alinhar metas dos casos.</div>
+        <div class="notas" data-c="b1"></div></div>
+      <div class="crit"><div class="nome">B2. Comunicação Intersetorial</div>
+        <div class="desc">Clareza, respeito, objetividade e cordialidade nos alinhamentos com pares, liderança e apoio.</div>
+        <div class="notas" data-c="b2"></div></div>
+      <div class="crit"><div class="nome">B3. Participação Técnica</div>
+        <div class="desc">Engajamento e presença qualificada em estudos de caso, reuniões clínicas, interconsultas e supervisão.</div>
+        <div class="notas" data-c="b3"></div></div>
+      <div class="crit"><div class="nome">B4. Clima Organizacional e Suporte Mútuo</div>
+        <div class="desc">Disposição para apoiar contingências, incentivar boas práticas e preservar o bem-estar coletivo.</div>
+        <div class="notas" data-c="b4"></div></div>
+      <div class="obs"><label>Observações e evidências do Bloco B <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsB" rows="2" placeholder="Fato concreto, métrica ou evidência..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco C — Acolhimento e Relacionamento <small>(peso 20%)</small></div>
+      <div class="crit"><div class="nome">C1. Conduta Ética e Sigilo</div>
+        <div class="desc">Resguardo da privacidade, proteção de dados de pacientes e cumprimento do dever de sigilo.</div>
+        <div class="notas" data-c="c1"></div></div>
+      <div class="crit"><div class="nome">C2. Vínculo e Acolhimento</div>
+        <div class="desc">Acolher famílias e pacientes com sensibilidade, gerando segurança e confiabilidade.</div>
+        <div class="notas" data-c="c2"></div></div>
+      <div class="crit"><div class="nome">C3. Empatia e Manejo de Crises</div>
+        <div class="desc">Postura calma e resolutiva diante de comportamentos desafiadores, ansiedade de familiares ou atritos.</div>
+        <div class="notas" data-c="c3"></div></div>
+      <div class="crit"><div class="nome">C4. Clareza e Transparência na Comunicação</div>
+        <div class="desc">Devolutivas claras, acessíveis, respeitosas e adequadas à compreensão dos usuários e responsáveis.</div>
+        <div class="notas" data-c="c4"></div></div>
+      <div class="obs"><label>Observações e evidências do Bloco C <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsC" rows="2" placeholder="Fato concreto, métrica ou evidência..."></textarea></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-h">Bloco D — Comprometimento e Conduta Funcional <small>(peso 10%)</small></div>
+      <div class="crit"><div class="nome">D1. Assiduidade e Pontualidade</div>
+        <div class="desc">Cumprimento de horários e escalas; ausência de faltas injustificadas.</div>
+        <div class="notas" data-c="d1"></div></div>
+      <div class="crit"><div class="nome">D2. Observância aos Procedimentos Internos</div>
+        <div class="desc">Adesão às normas internas, biossegurança, uniforme/crachá e regras institucionais.</div>
+        <div class="notas" data-c="d2"></div></div>
+      <div class="crit"><div class="nome">D3. Proatividade e Responsabilidade</div>
+        <div class="desc">Iniciativa para resolver pendências, zelo pelo patrimônio e conservação de insumos e salas.</div>
+        <div class="notas" data-c="d3"></div></div>
+      <div class="crit"><div class="nome">D4. Estabilidade e Profissionalismo</div>
+        <div class="desc">Autocontrole, maturidade e foco técnico sob pressão ou picos de demanda.</div>
+        <div class="notas" data-c="d4"></div></div>
+      <div class="obs"><label>Observações e evidências do Bloco D <span style="font-weight:normal">(opcional)</span></label>
+        <textarea id="obsD" rows="2" placeholder="Fato concreto, métrica ou evidência..."></textarea></div>
+    </div>
+
+    <label class="lbl">Parecer geral <span style="font-weight:normal;font-size:.75rem;color:#777;">(opcional — realizações marcantes, superação de metas, condutas diferenciadas)</span>
+      <textarea id="parecer" rows="3" placeholder="Comentários gerais sobre a atuação no exercício de 2026..."></textarea>
+    </label>
+
+    <p class="erro" id="erro">⚠ Preencha o nome do terapeuta avaliado e uma nota (1–5 ou N/A) em cada um dos 16 critérios.</p>
+    <button type="submit" id="btn">Enviar avaliação</button>
+  </form>
+</div>
+
+<div class="card" id="ok">
+  <div class="tick">✔</div>
+  <h2>Avaliação enviada!</h2>
+  <p>Obrigado. Sua resposta é anônima e foi registrada para a Gala Tríade 2026.</p>
+</div>
+
+<footer>Tríade Espaço Terapêutico · Ficha de Avaliação de Desempenho — Gala Tríade: Melhores do Ano · Exercício 2026</footer>
+
+<script>
+document.querySelectorAll('.notas').forEach(function(div){
+  var c = div.getAttribute('data-c'), html='';
+  for(var v=5;v>=1;v--){
+    html += '<label><input type="radio" name="'+c+'" value="'+v+'"><span>'+v+'</span></label>';
+  }
+  html += '<label class="na"><input type="radio" name="'+c+'" value="NA"><span>N/A</span></label>';
+  div.innerHTML = html;
+});
+
+var WEBHOOK = 'https://maestro.adapta.one/webhooks/generic/ef6e1f2bf37aa1dbab77f537458e555a60cd4d11acf5ad843733c1f8b90e037b?secret=5c7f955d3e03908d1f74e88e0f8fe72d1abc411cba74e87ea8f59bca364cb664';
+
+document.getElementById('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  var avaliado = document.getElementById('avaliado').value.trim();
+  var campos = ['a1','a2','a3','a4','b1','b2','b3','b4','c1','c2','c3','c4','d1','d2','d3','d4'];
+  var notas = {};
+  campos.forEach(function(c){
+    var el = document.querySelector('input[name="'+c+'"]:checked');
+    notas[c] = el ? el.value : null;
+  });
+  var completo = avaliado && campos.every(function(c){return notas[c]!==null;});
+  if(!completo){ document.getElementById('erro').style.display='block'; return; }
+  document.getElementById('erro').style.display='none';
+  var btn = document.getElementById('btn');
+  btn.disabled = true; btn.textContent = 'Enviando...';
+
+  var payload = {
+    avaliado: avaliado,
+    obsA: document.getElementById('obsA').value.trim(),
+    obsB: document.getElementById('obsB').value.trim(),
+    obsC: document.getElementById('obsC').value.trim(),
+    obsD: document.getElementById('obsD').value.trim(),
+    parecer: document.getElementById('parecer').value.trim()
+  };
+  campos.forEach(function(c){ payload[c] = notas[c] === 'NA' ? 'NA' : Number(notas[c]); });
+
+  fetch(WEBHOOK, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    document.getElementById('form-card').style.display='none';
+    document.getElementById('ok').style.display='block';
+  }).catch(function(err){
+    btn.disabled=false; btn.textContent='Enviar avaliação';
+    document.getElementById('erro').textContent='⚠ Falha no envio ('+err.message+'). Verifique a internet e tente de novo.';
+    document.getElementById('erro').style.display='block';
+  });
+});
+</script>
+</body>
+</html>
