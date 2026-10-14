@@ -153,6 +153,23 @@ document.querySelectorAll('.notas').forEach(function(div){
 
 var WEBHOOK = 'https://maestro.adapta.one/webhooks/generic/ef6e1f2bf37aa1dbab77f537458e555a60cd4d11acf5ad843733c1f8b90e037b?secret=5c7f955d3e03908d1f74e88e0f8fe72d1abc411cba74e87ea8f59bca364cb664';
 
+// Pré-preenchimento do avaliado via URL: ?avaliado=Nome (campo fica travado)
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var nome = params.get('avaliado');
+  if(nome){
+    var campo = document.getElementById('avaliado');
+    campo.value = nome;
+    campo.readOnly = true;
+    campo.style.background = '#e8eef7';
+    campo.style.fontWeight = 'bold';
+    var aviso = document.createElement('p');
+    aviso.style.cssText = 'font-size:.78rem;color:#2F5496;margin-top:4px;';
+    aviso.textContent = '✔ Avaliação direcionada: você está avaliando ' + nome + '.';
+    campo.parentNode.appendChild(aviso);
+  }
+})();
+
 document.getElementById('f').addEventListener('submit', function(e){
   e.preventDefault();
   var avaliado = document.getElementById('avaliado').value.trim();
